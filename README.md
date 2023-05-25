@@ -12,3 +12,5 @@
 - express
 - mongoose
 - nodemon
+- concurrently
+- dotenv
