@@ -13,11 +13,15 @@
   "author": "thefarismd",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
     "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.2.0",
     "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97"
   }
 }

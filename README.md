@@ -14,3 +14,4 @@
 - nodemon
 - concurrently
 - dotenv
+- bcrypt
