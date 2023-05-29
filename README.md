@@ -67,7 +67,7 @@ If you encounter any issues related to frontend dependencies, you can try the fo
 2. Run the command `npm cache clean --force`.
 3. Install the `@svgr/webpack` package as a dev dependency by running the command `npm install @svgr/webpack --save-dev`.
 4. Run the command `npm install`.
-5. If you face any middleware dependencies issue, you can refer to this [GitHub Pull Request](https://github.com/facebook/create-react-app/pull/11862/files/2dff88610f9ad215349424d1769b88e0a0d2fa1d) for a potential fix.
+5. If you face any "use of deprecated webpack DevServer onBeforeSetupMiddleware and onAfterSetupMiddleware options" you can refer to this [GitHub Pull Request](https://github.com/facebook/create-react-app/pull/11862/files/2dff88610f9ad215349424d1769b88e0a0d2fa1d) for a potential fix.
 
 ### Backend Dependencies
 
