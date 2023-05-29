@@ -16,7 +16,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-//-- Add a pre-save middleware to the user schema
+//-- Add a pre-save middleware to the user schema before saving the document
 userSchema.pre('save', async function (next) {
   // Check if the password field has been modified
   if (!this.isModified('password')) {
