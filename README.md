@@ -85,4 +85,4 @@ Specify guidelines and instructions for others who may want to contribute to you
 ## Contact
 
 - Email: thefarismd@icloud.com
-- Contact: +65 93374545
+- Whatsapp: +65 93374545
