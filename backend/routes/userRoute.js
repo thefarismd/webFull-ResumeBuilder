@@ -1,5 +1,5 @@
 import express from 'express';
-import { authUser } from '../controllers/userController';
+import { authUser } from '../controllers/userController.js';
 
 // Create a new router instance
 const router = express.Router();
@@ -8,3 +8,5 @@ const router = express.Router();
 // Route: /login
 // Method: POST
 router.route('/login').post(authUser);
+
+export default router;
