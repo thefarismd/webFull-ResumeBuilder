@@ -1,6 +1,6 @@
 # FRS ResumeBuilder
 
-A brief description or tagline for your project.
+Resume builder web application.
 
 ## Table of Contents
 
@@ -21,13 +21,15 @@ Provide a detailed description of your project. Explain what it does, its purpos
 
 List the key features and functionalities of your project. Highlight the aspects that make your project unique or useful.
 
-## Installation
-
-Provide instructions on how to install and set up the project. Include any dependencies or requirements that need to be fulfilled.
-
 ## Usage
 
 Explain how to use your project. Provide examples, code snippets, or screenshots to demonstrate its usage. Describe any configuration options or important considerations.
+
+## Installation
+
+1. Clone the repository
+2. `npm install` on frontend and backend folder
+3. `npm run dev` on the root directory : This command will concurrently start both the frontend and backend servers
 
 ## Environment Variables
 
@@ -43,10 +45,6 @@ The following environment variables are required in the `.env` file:
 - `PORT`: The port number on which the project will run.
 
 Make sure to replace these variable names with the actual environment variables used in your project.
-
-## License
-
-State the license under which your project is released. Choose an appropriate open-source license and include the license file in your repository.
 
 ## Dependencies
 
@@ -80,7 +78,17 @@ If you encounter any issues related to frontend dependencies, you can try the fo
 
 ## Contributing
 
-Specify guidelines and instructions for others who may want to contribute to your project. Explain how to submit issues, suggestions, or pull requests.
+If you'd like to contribute to the project, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch for your feature/fix: git checkout -b feature/your-feature.
+3. Commit your changes: git commit -m "Add your feature".
+4. Push to the branch: git push origin feature/your-feature.
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
