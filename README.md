@@ -1,17 +1,18 @@
 # FRS ResumeBuilder
 
-Resume builder web application.
+Resume builder web application(MERN).
 
 ## Table of Contents
 
 - [Project Description](#project-description)
 - [Features](#features)
-- [Installation](#installation)
 - [Usage](#usage)
+- [Installation](#installation)
 - [Environment Variables](#environment-variables)
+- [Dependencies](#dependencies)
 - [Contributing](#contributing)
 - [License](#license)
-- [Dependencies](#dependencies)
+- [Contact](#contact)
 
 ## Project Description
 
