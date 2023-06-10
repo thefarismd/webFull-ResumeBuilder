@@ -5,7 +5,7 @@ import generateJWT from '../config/generateJWT.js';
 // @desc     Auth user & login
 // @route    Post /api/user/login
 // @access   Public
-const authUser = expressAsyncHandler(async (res, req) => {
+const authUser = expressAsyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   // Find the user by email in the database
@@ -20,7 +20,7 @@ const authUser = expressAsyncHandler(async (res, req) => {
       token: generateJWT(user._id), //Generate JWT token for authentication
     });
   } else {
-    res.statusCode(401); // Set the HTTP status code to 401 Unauthorized
+    res.status(401); // Set the HTTP status code to 401 Unauthorized
     throw new Error('Invalid Email or Passord');
   }
 });
@@ -29,7 +29,7 @@ const authUser = expressAsyncHandler(async (res, req) => {
 // @route   Post /api/user/register
 // @access  Public
 
-const registerUser = expressAsyncHandler(async (res, req) => {
+const registerUser = expressAsyncHandler(async (req, res) => {
   // Extract name, email, and password from the request body
   const { name, email, password } = req.body;
 

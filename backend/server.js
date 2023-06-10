@@ -4,17 +4,19 @@ import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoute.js';
 
-//Load environment variables
-dotenv.config();
+dotenv.config(); //Load environment variables
 
-// Establish MongoDB connection
-connectDB();
+connectDB(); // Establish MongoDB connection
 
-// Create an Express application
-const app = express();
+const app = express(); // Create an Express application
 
-// Register user routes under the '/api/user' path
-app.use('/api/user', userRoute);
+app.use(express.json()); // Parse JSON request bodies
+
+app.get('/', (req, res) => {
+  res.send('Home Route Success'); // Return a response for the root path
+});
+
+app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
 
 // Set the default port number to 4000
 let port = 4000;

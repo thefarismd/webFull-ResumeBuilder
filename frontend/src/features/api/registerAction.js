@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const registerUser = createAsyncThunk(
-  'api/registerUser',
+  'register/registerUser',
   async ({ name, email, password }, thunkAPI) => {
     const config = {
       headers: {
@@ -12,7 +12,7 @@ const registerUser = createAsyncThunk(
 
     try {
       const response = await axios.post(
-        'api/user/register',
+        '/api/user/register',
         { name, email, password },
         config
       );

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import registerUser from '../features/api/registerAction';
 
 function Register() {
+  const dispatch = useDispatch();
+
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
@@ -22,21 +26,26 @@ function Register() {
     event.preventDefault(); // Prevents the default form submission behavior
     const form = event.currentTarget;
 
+    //if password does not match, reset comfirmPassword and trigger feedback
     if (registerData.password !== registerData.comfirmPassword) {
       setRegisterData((prevValue) => ({
         ...prevValue,
         comfirmPassword: '',
       }));
-      setValidated(true);
+      setValidated(true); // Set the "validated" state to true to display validation errors
     }
 
     if (form.checkValidity()) {
       // Form is valid, perform form submission or other actions
-      if (registerData.password !== registerData.comfirmPassword) {
-        setValidated(true);
-      }
+      dispatch(
+        registerUser({
+          name: registerData.name,
+          email: registerData.email,
+          password: registerData.password,
+        })
+      );
     } else {
-      setValidated(true); // Set the "validated" state to true to display validation errors
+      setValidated(true);
     }
   };
 

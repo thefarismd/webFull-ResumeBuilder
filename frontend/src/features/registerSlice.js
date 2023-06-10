@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const registerSlice = createSlice({
-  name: 'registerUser',
+  name: 'register',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -16,7 +16,7 @@ const registerSlice = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.pending, (state, action) => {
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.userInfo = action.payload;
       })
