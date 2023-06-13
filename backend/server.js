@@ -3,6 +3,7 @@ import colors from 'colors';
 import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoute.js';
+import { notFound, otherError } from './middleware/errorMiddleware.js';
 
 dotenv.config(); //Load environment variables
 
@@ -17,6 +18,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
+
+app.use(notFound); //error handler for undefined routes
+app.use(otherError); //error handler for all other errors
 
 // Set the default port number to 4000
 let port = 4000;
