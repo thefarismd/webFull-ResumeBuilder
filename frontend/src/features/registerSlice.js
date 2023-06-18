@@ -25,8 +25,9 @@ const registerSlice = createSlice({
         state.userInfo = action.payload;
         localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
       })
-      .addCase(registerUser.rejected, (state) => {
-        state.isLoading = true;
+      .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

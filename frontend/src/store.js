@@ -3,7 +3,7 @@ import registerReducer from './features/registerSlice';
 
 const store = configureStore({
   reducer: {
-    registerReducer: registerReducer,
+    userRegister: registerReducer,
   },
 });
 

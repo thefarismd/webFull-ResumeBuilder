@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import registerUser from '../features/api/registerAction';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 function Register() {
   const dispatch = useDispatch();
@@ -13,6 +15,10 @@ function Register() {
     password: '',
     comfirmPassword: '',
   });
+
+  // Extract the api state when registering
+  const userRegisterState = useSelector((state) => state.userRegister);
+  const { userInfo, isLoading, error } = userRegisterState;
 
   const onChangeHandler = (event) => {
     setRegisterData({
@@ -51,6 +57,8 @@ function Register() {
 
   return (
     <Container className='mt-5'>
+      {error && <Message variant='danger'>{error}</Message>}
+      {isLoading && <Loader></Loader>}
       <Row className='justify-content-center'>
         <Col />
         <Col className='text-center'>
