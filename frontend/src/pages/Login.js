@@ -1,16 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Form, Button, Col, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import userLogin from '../features/api/loginAction';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
+  const [loginInputs, setLoginInputs] = useState({
+    email: '',
+    password: '',
+  });
+
+  const userLoginState = useSelector((state) => state.userLogin);
+  const { userInfo, isLoading, error } = userLoginState;
+
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate('/');
+  //   }
+  // }, [navigate, userInfo]);
+
+  const onChangeHandler = (event) => {
+    setLoginInputs({
+      ...loginInputs,
+      [event.target.type]: event.target.value,
+    });
+  };
 
   const submitForm = (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
     const form = event.currentTarget;
+
     if (form.checkValidity()) {
       // Form is valid, perform form submission or other actions
-      console.log('Form submitted');
+      dispatch(
+        userLogin({ email: loginInputs.email, password: loginInputs.password })
+      );
     } else {
       setValidated(true); // Set the "validated" state to true to display validation errors
     }
@@ -18,6 +47,8 @@ function Login() {
 
   return (
     <Container className='mt-5'>
+      {error && <Message variant='danger'>{error}</Message>}
+      {isLoading && <Loader></Loader>}
       <Row className='justify-content-center'>
         <Col />
         <Col className='text-center'>
@@ -34,14 +65,24 @@ function Login() {
             <Form noValidate validated={validated} onSubmit={submitForm}>
               <Form.Group controlId='emailCustomValidation'>
                 <Form.Label>Email</Form.Label>
-                <Form.Control type='email' placeholder='Email' required />
+                <Form.Control
+                  type='email'
+                  placeholder='Email'
+                  onChange={onChangeHandler}
+                  required
+                />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a valid email.
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className='mt-2' controlId='passwordCustomValidation'>
                 <Form.Label>Password</Form.Label>
-                <Form.Control type='password' placeholder='Password' required />
+                <Form.Control
+                  type='password'
+                  placeholder='Password'
+                  onChange={onChangeHandler}
+                  required
+                />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a password.
                 </Form.Control.Feedback>

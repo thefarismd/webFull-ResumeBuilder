@@ -21,7 +21,7 @@ const authUser = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(401); // Set the HTTP status code to 401 Unauthorized
-    throw new Error('Invalid Email or Passord');
+    throw new Error('Invalid Email or Password');
   }
 });
 
