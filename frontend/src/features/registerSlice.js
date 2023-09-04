@@ -14,7 +14,12 @@ const initialState = {
 const registerSlice = createSlice({
   name: 'register',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    registerReset: (state) => {
+      localStorage.removeItem('userInfo');
+      state.userInfo = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -34,4 +39,5 @@ const registerSlice = createSlice({
 
 const registerReducer = registerSlice.reducer;
 
+export const { registerReset } = registerSlice.actions;
 export default registerReducer;

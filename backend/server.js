@@ -2,7 +2,7 @@ import express from 'express';
 import colors from 'colors';
 import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
-import userRoute from './routes/userRoute.js';
+import userRoute from './api-routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
 
 dotenv.config(); //Load environment variables
@@ -13,9 +13,9 @@ const app = express(); // Create an Express application
 
 app.use(express.json()); // Parse JSON request bodies
 
-app.get('/', (req, res) => {
-  res.send('Home Route Success'); // Return a response for the root path
-});
+// app.get('/', (req, res) => {
+//   res.send('Home Route Success'); // Return a response for the root path
+// });
 
 app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
 

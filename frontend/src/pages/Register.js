@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, Container, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import registerUser from '../features/api/registerAction';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import { useEffect } from 'react';
 
 function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [registerData, setRegisterData] = useState({
     name: '',
@@ -19,6 +21,12 @@ function Register() {
   // Extract the api state when registering
   const userRegisterState = useSelector((state) => state.userRegister);
   const { userInfo, isLoading, error } = userRegisterState;
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [userInfo, navigate]);
 
   const onChangeHandler = (event) => {
     setRegisterData({
@@ -78,6 +86,7 @@ function Register() {
                 <Form.Control
                   type='text'
                   name='name'
+                  autoComplete='off'
                   placeholder='Name'
                   required
                   onChange={onChangeHandler}
@@ -92,6 +101,7 @@ function Register() {
                 <Form.Control
                   type='email'
                   name='email'
+                  autoComplete='off'
                   placeholder='Email'
                   required
                   onChange={onChangeHandler}
