@@ -18,11 +18,11 @@ function Login() {
   const userLoginState = useSelector((state) => state.userLogin);
   const { userInfo, isLoading, error } = userLoginState;
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate('/');
-  //   }
-  // }, [navigate, userInfo]);
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
 
   const onChangeHandler = (event) => {
     setLoginInputs({

@@ -9,7 +9,7 @@ const router = express.Router();
 // Method: POST
 router.route('/login').post(authUser);
 
-// Define the route for user login
+// Define the route for register user
 // Route: /register
 // Method: POST
 router.route('/register').post(registerUser);
