@@ -29,15 +29,8 @@ function Header() {
   const userInfo = userLogin?.userInfo || userRegister?.userInfo || null;
 
   const afterLoginComponent = userInfo ? (
-    <NavDropdown
-      title={
-        <>
-          <i className='fa-solid fa-user me-2'></i>
-          {userInfo.name.toUpperCase()}
-        </>
-      }
-    >
-      <NavDropdown.Item>Profile</NavDropdown.Item>
+    <NavDropdown title={<><i className='fa-solid fa-user me-2'></i>{userInfo.name.toUpperCase()}</>}>
+      <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
       <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
     </NavDropdown>
   ) : null;

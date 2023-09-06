@@ -21,13 +21,14 @@ const protect = expressAsyncHandler(async (req, res, next) => {
       next();
       return; //Exit from the current middleware
     } catch (error) {
-      //If there is an error in token verification such as token is expired, invalid), redirect to login page
-      return res.redirect('/login');
+      res.status(401);
+      throw new Error('Not authorized, Invalid Token');
     }
   }
 
   if (!token) {
-    return res.redirect('/login');
+      res.status(401);
+      throw new Error('Not authorized, No Token');
   }
 });
 

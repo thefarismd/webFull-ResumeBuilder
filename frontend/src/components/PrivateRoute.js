@@ -1,9 +1,9 @@
-import { Outlet, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-function PrivateRoute() {
+function PrivateRoute({children}) {
   // Use the isAuthenticated function to determine if the user is authenticated
   if (isAuthenticated()) {
-    return <Outlet />;
+    return children;
   }
 
   // If the user is not authenticated, navigate them to the login page
