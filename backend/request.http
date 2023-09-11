@@ -1,10 +1,18 @@
+### Api User Login
 POST http://localhost:4000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "john@example.com",
-    "password": "123456"
+    "email": "JANE@EXAMPLE.COM",
+    "password": "Jane123@"
 }
 
-###
-GET http://localhost:4000/login
+### Api User Register
+POST http://localhost:4000/api/user/register
+Content-Type: application/json
+
+{
+    "name": "JANE",
+    "email": "JANE@example.com",
+    "password": "Jane123@"
+}

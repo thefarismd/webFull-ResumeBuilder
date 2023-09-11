@@ -16,7 +16,7 @@ function otherError(err, req, res, next) {
   // Create a JSON response with an error message
   res.json({
     message: err.message,
-    stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+    stack: process.env.NODE_ENV === 'PRODUCTION' ? null : err.stack,
   });
 }
 

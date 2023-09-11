@@ -2,7 +2,7 @@ import express from 'express';
 import colors from 'colors';
 import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
-import userRoute from './api-routes/userRoute.js';
+import userRoute from './routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
 
 dotenv.config(); //Load environment variables

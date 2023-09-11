@@ -2,12 +2,12 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import Home from './screens/Home';
 import DefaultLayout from './components/DefaultLayout';
 import PrivateRoute from './components/PrivateRoute';
-import Profile from './components/Profile';
+import Resume from './screens/Resume';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
             <Route path='/' element={<PrivateRoute><Home /></PrivateRoute>}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>}/>           
+            <Route path='/profile' element={<PrivateRoute><Resume /></PrivateRoute>}/>           
           </Route>
         </Routes>
       </BrowserRouter>

@@ -19,7 +19,7 @@ function isAuthenticated() {
   // Check if the data exists and if it has a token property
   if (userInfo) {
     const parsedUserInfo = JSON.parse(userInfo);
-    return !!parsedUserInfo.token;
+    return !!parsedUserInfo.accessToken;
   }
 
   // If the above conditions aren't met, return false

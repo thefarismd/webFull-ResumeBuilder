@@ -69,10 +69,12 @@ function Login() {
                   type='email'
                   placeholder='Email'
                   onChange={onChangeHandler}
+                  pattern='^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$'
                   required
                 />
                 <Form.Control.Feedback type='invalid'>
-                  Please provide a valid email.
+                  Please provide a valid email with a top-level domain (e.g.,
+                  .com).
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className='mt-2' controlId='passwordCustomValidation'>
@@ -81,10 +83,13 @@ function Login() {
                   type='password'
                   placeholder='Password'
                   onChange={onChangeHandler}
+                  pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{8,}$'
                   required
                 />
                 <Form.Control.Feedback type='invalid'>
-                  Please provide a password.
+                  Password must contain at least one lowercase letter, one
+                  uppercase letter, one digit, one special character, and be at
+                  least 8 characters long.
                 </Form.Control.Feedback>
               </Form.Group>
               <Row className='mt-3'>

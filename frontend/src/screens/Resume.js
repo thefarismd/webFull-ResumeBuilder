@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
 
-function Profile() {
+function Resume() {
   const [key, setKey] = useState('Personal Info');
 
   return (
@@ -25,4 +25,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Resume;
