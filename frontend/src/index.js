@@ -20,17 +20,17 @@ import {disableReactDevTools } from '@fvilers/disable-react-devtools';
  */
 
 // Disable React DevTools for production
-if (process.env.NODE_ENV.toUpperCase() === 'DEVELOPMENT') {
+if (process.env.NODE_ENV.toUpperCase() === 'PRODUCTION') {
   disableReactDevTools();
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 

@@ -18,7 +18,12 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-//-- Add a pre-save middleware to the user schema before saving the document
+/*
+This middleware function is executed before a document is saved to MongoDB. 
+It checks whether the password field of the user document has been modified. 
+If it has, the function hashes the new password before the document is saved. 
+This way, only hashed passwords are stored in the database, increasing security.
+*/
 userSchema.pre('save', async function (next) {
   // Check if the password field has been modified
   if (!this.isModified('password')) {

@@ -4,6 +4,7 @@ import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config(); //Load environment variables
 
@@ -12,6 +13,7 @@ connectDB(); // Establish MongoDB connection
 const app = express(); // Create an Express application
 
 app.use(express.json()); // Parse JSON request bodies
+app.use(cookieParser()); // Parse cookie to object
 
 // app.get('/', (req, res) => {
 //   res.send('Home Route Success'); // Return a response for the root path

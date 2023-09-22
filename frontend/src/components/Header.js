@@ -9,28 +9,34 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginReset } from '../features/loginSlice.js';
-import { registerReset } from '../features/registerSlice.js';
+import { logout } from '../features/loginSlice';
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    dispatch(loginReset());
-    dispatch(registerReset());
+    dispatch(logout());
     navigate('/login');
   };
 
-  // Destructure both userLogin and userRegister from the store
-  const { userLogin, userRegister } = useSelector((store) => store);
-
-  // Determine which userInfo to use
-  const userInfo = userLogin?.userInfo || userRegister?.userInfo || null;
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
 
   const afterLoginComponent = userInfo ? (
-    <NavDropdown title={<><i className='fa-solid fa-user me-2'></i>{userInfo.name.toUpperCase()}</>}>
-      <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
+    <NavDropdown
+      title={
+        <>
+          <i className='fa-solid fa-user me-2'></i>
+          {userInfo.name.toUpperCase()}
+        </>
+      }
+    >
+      <NavDropdown.Item as={Link} to='/profile'>
+        Profile
+      </NavDropdown.Item>
+      <NavDropdown.Item as={Link} to='/resume'>
+        Resume
+      </NavDropdown.Item>
       <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
     </NavDropdown>
   ) : null;

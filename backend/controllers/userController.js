@@ -10,7 +10,7 @@ import {
 } from '../config/validationSchema.js';
 
 // @desc     Auth user & login
-// @route    Post /api/user/login
+// @route    POST /api/user/login
 // @access   Public
 const authUser = expressAsyncHandler(async (req, res) => {
   // Input validation request body against the joi schema
@@ -57,9 +57,8 @@ const authUser = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    Register a new user
-// @route   Post /api/user/register
+// @route   POST /api/user/register
 // @access  Public
-
 const registerUser = expressAsyncHandler(async (req, res) => {
   // Input validation request body against the joi schema
   const validationResult = userRegisterValidationSchema.validate(req.body);
@@ -111,4 +110,83 @@ const registerUser = expressAsyncHandler(async (req, res) => {
   });
 });
 
-export { authUser, registerUser };
+// @desc     Get User Profile
+// @route    GET /api/user/profile
+// @access   Private
+const getUserProfile = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(404); //404 : browser was able to communicate with a given server, but the server could not find what was requested.
+    throw new Error('User not found');
+  }
+});
+
+// @desc     Update User Profile
+// @route    PUT /api/user/profile
+// @access   Private
+const updateUserProfile = expressAsyncHandler(async (req, res) => {
+
+  const user = await User.findById(req.body._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      accessToken: generateAccessToken(updatedUser._id),
+    });
+  } else {
+    res.status(404); //404 : browser was able to communicate with a given server, but the server could not find what was requested.
+    throw new Error('User not found.');
+  }
+});
+
+// @desc     Refresh JWT access token using refresh token
+// @route    POST /api/user/refresh-token
+// @access   Public (Anyone with a valid refresh token can access)
+const refreshUserAccessToken = expressAsyncHandler(async (req, res) => {
+
+  const refreshToken = req.cookies.refreshToken;
+
+  if (!refreshToken) {
+    res.status(403); // 403 Forbidden Error
+    throw new Error('Refresh token is required.');
+  }
+
+  const user = await User.findOne({ refreshToken });
+
+  if (!user) {
+    res.status(403); // 403 Forbidden Error
+    throw new Error('Invalid refresh token.');
+  }
+
+  jwt.verify(refreshToken, process.env.REFRESH_SECRET_KEY);
+  const newAccessToken = generateAccessToken(user._id);
+
+  res.json({ accessToken: newAccessToken });
+});
+
+
+export {
+  authUser,
+  registerUser,
+  getUserProfile,
+  updateUserProfile,
+  refreshUserAccessToken,
+};

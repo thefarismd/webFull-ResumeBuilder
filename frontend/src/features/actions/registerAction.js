@@ -4,19 +4,10 @@ import axios from 'axios';
 const registerUser = createAsyncThunk(
   'register/registerUser',
   async ({ name, email, password }, thunkAPI) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+    const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      const response = await axios.post(
-        '/api/user/register',
-        { name, email, password },
-        config
-      );
-
+      const response = await axios.post('/api/user/register', { name, email, password }, config);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);

@@ -1,48 +1,59 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Container, Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import registerUser from '../features/actions/registerAction';
+import { Row, Col, Form, Container, Button } from 'react-bootstrap';
+// import { useNavigate } from 'react-router-dom';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { useEffect } from 'react';
+import {
+  getUserProfile,
+  updateUserProfile,
+} from '../features/actions/profileAction';
 
-function Register() {
+function Profile() {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const isMounted = useRef();
 
-  const [registerData, setRegisterData] = useState({
+  const [userProfile, setUserProfile] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  // Extract the api state when registering
-  const userRegisterState = useSelector((state) => state.userRegister);
-  const { userInfo, isLoading, error } = userRegisterState;
+
+  const userProfileState = useSelector((state) => state.userProfile);
+  const { userInfo, isLoading, error, updateSuccess } = userProfileState;
 
   useEffect(() => {
-    if (userInfo) {
-      navigate('/');
-    }
-  }, [userInfo, navigate]);
+  if (!userInfo) {
+    dispatch(getUserProfile());
+  } else {
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      name: userInfo.name || prevProfile.name,
+      email: userInfo.email || prevProfile.email,
+    }));
+  }
+    
+  }, [userInfo, dispatch]);
 
   const onChangeHandler = (event) => {
-    setRegisterData({
-      ...registerData,
+    setUserProfile({
+      ...userProfile,
       [event.target.name]: event.target.value,
     });
   };
-  const [validated, setValidated] = useState(false);
 
+  //Form submission with validation
+  const [validated, setValidated] = useState(false);
   const onSubmitHandler = (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
     const form = event.currentTarget;
 
-    //if password does not match, reset comfirmPassword and trigger feedback
-    if (registerData.password !== registerData.comfirmPassword) {
-      setRegisterData((prevValue) => ({
+    //if password does not match, reset confirmPassword and trigger feedback
+    if (userProfile.password !== userProfile.confirmPassword) {
+      setUserProfile((prevValue) => ({
         ...prevValue,
         confirmPassword: '',
       }));
@@ -52,12 +63,21 @@ function Register() {
     if (form.checkValidity()) {
       // Form is valid, perform form submission or other actions
       dispatch(
-        registerUser({
-          name: registerData.name,
-          email: registerData.email,
-          password: registerData.password,
+        updateUserProfile({
+          _id: userInfo._id,
+          name: userProfile.name,
+          email: userProfile.email,
+          password: userProfile.password,
         })
       );
+
+      setUserProfile({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword:''
+      });
+      
     } else {
       setValidated(true);
     }
@@ -67,12 +87,11 @@ function Register() {
     <Container className='mt-5'>
       {error && <Message variant='danger'>{error}</Message>}
       {isLoading && <Loader></Loader>}
+      {updateSuccess && <Message variant='success'>Profile Updated</Message>}
       <Row className='justify-content-center'>
         <Col />
         <Col className='text-center'>
-          <h2>
-            <b>Register</b>
-          </h2>
+          <h2>Update Profile</h2>
         </Col>
         <Col />
       </Row>
@@ -91,7 +110,7 @@ function Register() {
                   pattern="^[A-Za-z\s'\-]+$"
                   required
                   onChange={onChangeHandler}
-                  value={registerData.name}
+                  value={userProfile.name}
                 />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a name with only alphabets.
@@ -107,7 +126,7 @@ function Register() {
                   pattern='^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$'
                   required
                   onChange={onChangeHandler}
-                  value={registerData.email}
+                  value={userProfile.email}
                 />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a valid email with a top-level domain (e.g.,
@@ -126,7 +145,7 @@ function Register() {
                   pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{8,}$'
                   required
                   onChange={onChangeHandler}
-                  value={registerData.password}
+                  value={userProfile.password}
                 />
                 <Form.Control.Feedback type='invalid'>
                   Password must contain at least one lowercase letter, one
@@ -138,7 +157,7 @@ function Register() {
                 className='mt-2'
                 controlId='passwordCustomValidation02'
               >
-                <Form.Label>Comfirm Password</Form.Label>
+                <Form.Label>confirm Password</Form.Label>
                 <Form.Control
                   type='password'
                   name='confirmPassword'
@@ -146,7 +165,7 @@ function Register() {
                   pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{8,}$'
                   required
                   onChange={onChangeHandler}
-                  value={registerData.comfirmPassword}
+                  value={userProfile.confirmPassword}
                 />
                 <Form.Control.Feedback type='invalid'>
                   Passwords must match.
@@ -154,13 +173,7 @@ function Register() {
               </Form.Group>
               <Row className='mt-3'>
                 <Col lg={4} xs={4}>
-                  <Button type='submit'>Register</Button>
-                </Col>
-                <Col className='d-flex align-items-center text-end'>
-                  <Container className='px-0'>
-                    <span className='me-2'>Have an account?</span>
-                    <Link to={'/login'}>Login here</Link>
-                  </Container>
+                  <Button type='submit'>Update</Button>
                 </Col>
               </Row>
             </Form>
@@ -172,4 +185,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Profile;

@@ -6,7 +6,7 @@ function Resume() {
 
   return (
     <Container className='mt-4 px-0'>
-      <h2>Update Profile</h2>
+      <h2>Update Resume</h2>
       <Tabs activeKey={key} onSelect={(k) => setKey(k)} className='mb-3'>
         <Tab eventKey='Personal Info' title='Home'>
           Tab content for Home

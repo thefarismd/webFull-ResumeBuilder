@@ -1,17 +1,39 @@
 import express from 'express';
-import { authUser, registerUser } from '../controllers/userController.js';
+import {
+  verifyAccessToken,
+} from '../middleware/authMiddleware.js';
+import {
+  authUser,
+  registerUser,
+  getUserProfile,
+  updateUserProfile,
+  refreshUserAccessToken
+} from '../controllers/userController.js';
 
 // Create a new router instance
 const router = express.Router();
 
-// Define the route for user login
-// Route: api/user/login
+// User Login
+// Endpoint: api/user/login
 // Method: POST
 router.route('/login').post(authUser);
 
-// Define the route for register user
+// User Register
 // Route: api/user/register
 // Method: POST
 router.route('/register').post(registerUser);
+
+// Update User Profile
+// Endpoint: api/user/profile
+// Method: GET, PUT
+router
+  .route('/profile')
+  .get(verifyAccessToken, getUserProfile)
+  .put(verifyAccessToken, updateUserProfile);
+
+// Refresh User Access Token
+// Endpoint: api/user/refresh-token
+// Method: POST
+router.route('/refresh-token').post(refreshUserAccessToken);
 
 export default router;

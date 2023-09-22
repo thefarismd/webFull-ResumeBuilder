@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Form, Button, Col, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import userLogin from '../features/api/loginAction';
+import userLogin from '../features/actions/loginAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';

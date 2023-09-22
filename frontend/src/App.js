@@ -8,6 +8,8 @@ import Home from './screens/Home';
 import DefaultLayout from './components/DefaultLayout';
 import PrivateRoute from './components/PrivateRoute';
 import Resume from './screens/Resume';
+import Profile from './screens/Profile';
+
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
             <Route path='/' element={<PrivateRoute><Home /></PrivateRoute>}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/profile' element={<PrivateRoute><Resume /></PrivateRoute>}/>           
+            <Route path='/resume' element={<PrivateRoute><Resume /></PrivateRoute>}/>  
+            <Route path='/profile' element={<PrivateRoute><Profile/></PrivateRoute>}/>          
           </Route>
         </Routes>
       </BrowserRouter>
