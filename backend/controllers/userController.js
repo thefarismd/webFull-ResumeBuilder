@@ -8,6 +8,7 @@ import {
   userRegisterValidationSchema,
   userLoginValidationSchema,
 } from '../config/validationSchema.js';
+import jwt from 'jsonwebtoken';
 
 // @desc     Auth user & login
 // @route    POST /api/user/login
@@ -124,7 +125,7 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(404); //404 : browser was able to communicate with a given server, but the server could not find what was requested.
-    throw new Error('User not found');
+    throw new Error('User Not Found');
   }
 });
 
@@ -153,7 +154,7 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(404); //404 : browser was able to communicate with a given server, but the server could not find what was requested.
-    throw new Error('User not found.');
+    throw new Error('User Not Found');
   }
 });
 
@@ -173,7 +174,7 @@ const refreshUserAccessToken = expressAsyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(403); // 403 Forbidden Error
-    throw new Error('Invalid refresh token.');
+    throw new Error('Invalid Refresh Token.');
   }
 
   jwt.verify(refreshToken, process.env.REFRESH_SECRET_KEY);

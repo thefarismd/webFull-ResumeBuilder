@@ -16,6 +16,7 @@ const updateUserProfile = createAsyncThunk('profile/updateUserProfile', async(us
         const response = await axiosInterceptorsInstance.put('/api/user/profile', userInfo);
         return response.data;
     } catch (error) {
+        console.log(error);
         return thunkAPI.rejectWithValue(error.response.data.message);
     }
 });

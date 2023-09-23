@@ -19,4 +19,4 @@ Content-Type: application/json
 
 ### GET User Profile
 GET http://localhost:4000/api/user/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZmViYWNhMTg3Yzg5ZTJhMDU2OGQxZCIsImlhdCI6MTY5NDkxMjY4NiwiZXhwIjoxNjk0OTEyNzQ2fQ.AMYpKQ-VORYmzYwFXd0kgXG5-wmDrmjLYUnh8ibaUxA
+Authorization: Bearer 

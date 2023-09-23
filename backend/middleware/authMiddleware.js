@@ -20,7 +20,7 @@ const verifyAccessToken = expressAsyncHandler(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    try {
+    try { 
       // Split the authorization header to extract the token part
       token = req.headers.authorization.split(' ')[1];
 
@@ -34,18 +34,18 @@ const verifyAccessToken = expressAsyncHandler(async (req, res, next) => {
       // Here, check if the error is because of token expiry
       if (error instanceof jwt.TokenExpiredError) {
         res.status(401);
-        throw new Error('Token expired.');
+        throw new Error('Token Expired');
       } else {
         // Handle other JWT errors
         res.status(401);
-        throw new Error('Not authorized, Invalid Token');
+        throw new Error('Not Authorized - Invalid Token');
       }
     }
   }
 
   if (!token) {
     res.status(401);
-    throw new Error('Not authorized, No Token');
+    throw new Error('Not Authorized - No Token');
   }
 });
 
