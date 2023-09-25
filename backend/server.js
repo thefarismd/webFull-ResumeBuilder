@@ -15,9 +15,10 @@ const app = express(); // Create an Express application
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookie to object
 
-// app.get('/', (req, res) => {
-//   res.send('Home Route Success'); // Return a response for the root path
-// });
+// For checking whether your api is working
+app.get('/', (req, res) => {
+  res.send('API is working.'); // Return a response for the root path
+});
 
 app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
 
