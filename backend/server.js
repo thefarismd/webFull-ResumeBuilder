@@ -26,12 +26,15 @@ app.use(notFound); //error handler for undefined routes
 app.use(otherError); //error handler for all other errors
 
 // Set the default port number to 4000
-let port = 4000;
+// let port = 4000;
 
 // Check if the port variable is null or an empty string
 // If it is, set it to the default port number
-if (port == null || port == '') {
-  port = 4000;
-}
+// if (port == null || port == '') {
+//   port = 4000;
+// }
+
+const port = process.env.PORT || 4000;
+
 // Start the server and listen on the specified port
 app.listen(port, console.log(`Server running on ${port}`.cyan.underline));
