@@ -9,7 +9,7 @@
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build:client": "npm run build --prefix frontend",
+    "build:client": "npm run build",
     "clean:build": "rimraf frontend/build"
   },
   "engines": {
