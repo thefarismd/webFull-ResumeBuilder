@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import userRoute from './routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 dotenv.config(); //Load environment variables
 
@@ -21,6 +22,14 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// Any get request that doesn't match a previous route will be directed to the React frontend
+app.get('*', (req, res) => {
+   res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
+});
 
 app.use(notFound); //error handler for undefined routes
 app.use(otherError); //error handler for all other errors
