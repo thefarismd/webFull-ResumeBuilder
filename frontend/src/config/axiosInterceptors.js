@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Error } from 'mongoose';
 
 // Step 1: Axios Instance
 // Create a new instance of axios with the default configurations.
