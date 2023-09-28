@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 import userRoute from './Routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 import cors from 'cors';
 
 
@@ -33,17 +33,17 @@ app.get('/', (req, res) => {
 
 app.use('/api/user', userRoute); // Register user routes under the '/api/user' path
 
-// Serve static files from the React frontend app in production
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// // Serve static files from the React frontend app in production
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+//   });
+// }
 
 app.use(notFound); //error handler for undefined routes
 app.use(otherError); //error handler for all other errors
