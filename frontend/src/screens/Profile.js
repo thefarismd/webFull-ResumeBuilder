@@ -110,7 +110,7 @@ function Profile() {
           </Row>
           <Row className='justify-content-center'>
             <Col>
-              <Container style={{ width: '400px' }}>
+              <Container className='w-100 w-lg-auto' style={{ maxWidth: '400px' }}>
                 <Form
                   noValidate
                   validated={validated}

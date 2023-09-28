@@ -76,7 +76,7 @@ function Register() {
       </Row>
       <Row className='justify-content-center'>
         <Col>
-          <Container style={{ width: '400px' }}>
+          <Container className='w-100 w-lg-auto' style={{ maxWidth: '400px' }}>
             <Form noValidate validated={validated} onSubmit={onSubmitHandler}>
               <Form.Group controlId='usernameCustomValidation'>
                 <Form.Label>Name</Form.Label>
