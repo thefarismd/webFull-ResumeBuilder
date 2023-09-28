@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
-    "client": "npm dev --prefix frontend",
+    "client": "npm run client-dev --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "clean:build": "rimraf frontend/build"
   },
