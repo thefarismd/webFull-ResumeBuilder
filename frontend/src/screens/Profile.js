@@ -104,14 +104,11 @@ function Profile() {
       {!tokenError && (
         <>
           <Row className='justify-content-center'>
-            <Col />
             <Col className='text-center'>
               <h2>Update Profile</h2>
             </Col>
-            <Col />
           </Row>
           <Row className='justify-content-center'>
-            <Col />
             <Col>
               <Container style={{ width: '400px' }}>
                 <Form
@@ -201,7 +198,6 @@ function Profile() {
                 </Form>
               </Container>
             </Col>
-            <Col />
           </Row>{' '}
         </>
       )}

@@ -68,16 +68,13 @@ function Register() {
       {error && <Message variant='danger'>{error}</Message>}
       {isLoading && <Loader></Loader>}
       <Row className='justify-content-center'>
-        <Col />
         <Col className='text-center'>
           <h2>
             <b>Register</b>
           </h2>
         </Col>
-        <Col />
       </Row>
       <Row className='justify-content-center'>
-        <Col />
         <Col>
           <Container style={{ width: '400px' }}>
             <Form noValidate validated={validated} onSubmit={onSubmitHandler}>
@@ -166,7 +163,6 @@ function Register() {
             </Form>
           </Container>
         </Col>
-        <Col />
       </Row>
     </Container>
   );

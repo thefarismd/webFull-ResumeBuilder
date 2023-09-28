@@ -50,18 +50,15 @@ function Login() {
       {error && <Message variant='danger'>{error}</Message>}
       {isLoading && <Loader></Loader>}
       <Row className='justify-content-center'>
-        <Col />
         <Col className='text-center'>
           <h2>
             <b>Login</b>
           </h2>
         </Col>
-        <Col />
       </Row>
       <Row className='justify-content-center'>
-        <Col />
         <Col>
-          <Container style={{ width: '400px' }}>
+          <Container className='w-100 w-lg-auto' style={{ maxWidth: '400px' }}>
             <Form noValidate validated={validated} onSubmit={submitForm}>
               <Form.Group controlId='emailCustomValidation'>
                 <Form.Label>Email</Form.Label>
@@ -106,7 +103,6 @@ function Login() {
             </Form>
           </Container>
         </Col>
-        <Col />
       </Row>
     </Container>
   );
