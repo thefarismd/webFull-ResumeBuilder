@@ -2,7 +2,7 @@ import express from 'express';
 import colors from 'colors';
 import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
-import userRoute from './routes/userRoute.js';
+import userRoute from './Routes/userRoute.js';
 import { notFound, otherError } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -18,7 +18,7 @@ const app = express(); // Create an Express application
 // app.use(cors()); //Eanble CORS for all routes
 app.use(
   cors({
-    origin: 'https://your-frontend-domain.com',
+    origin: process.env.API_URL,
   })
 );
 
