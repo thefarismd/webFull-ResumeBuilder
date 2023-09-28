@@ -16,11 +16,13 @@ connectDB(); // Establish MongoDB connection
 
 const app = express(); // Create an Express application
 // app.use(cors()); //Eanble CORS for all routes
-app.use(
-  cors({
-    origin: process.env.API_URL,
-  })
-);
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors());
+} else {
+  app.use(cors({ origin: process.env.CLIENT_URL }));
+}
+
 
 
 app.use(express.json()); // Parse JSON request bodies

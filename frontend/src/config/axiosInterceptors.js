@@ -49,7 +49,7 @@ axiosInterceptorsInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       // Use the environment variable for the base API URL
-      const apiBaseUrl = process.env.API_URL || ''; // Fallback to an empty string if not defined
+      const apiBaseUrl = process.env.REACT_APP_API_URL || ''; // Fallback to an empty string if not defined
 
       // const response = await axios.post('/api/user/refresh-token');
       const response = await axios.post(`${apiBaseUrl}/api/user/refresh-token`);

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosInterceptorsInstance } from '../../config/axiosInterceptors';
 
 // Use the environment variable for the base API URL
-const apiBaseUrl = process.env.API_URL || ''; // Fallback to an empty string if not defined
+const apiBaseUrl = process.env.REACT_APP_API_URL || ''; // Fallback to an empty string if not defined
 
 const getUserProfile = createAsyncThunk(
   'profile/getUserProfile',
