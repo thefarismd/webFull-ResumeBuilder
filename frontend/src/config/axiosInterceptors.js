@@ -48,14 +48,20 @@ axiosInterceptorsInstance.interceptors.response.use(
     if (responseStatus === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      const response = await axios.post('/api/user/refresh-token');
+      // Use the environment variable for the base API URL
+      const apiBaseUrl = process.env.API_URL || ''; // Fallback to an empty string if not defined
+
+      // const response = await axios.post('/api/user/refresh-token');
+      const response = await axios.post(`${apiBaseUrl}/api/user/refresh-token`);
 
       // If refresh was successful, update the access token in localStorage
       if (response.status === 201) {
         // localStorage.setItem('accessToken', res.data.accessToken);
 
         // Get current userInfo from localStorage
-        const localStorageUserInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const localStorageUserInfo = JSON.parse(
+          localStorage.getItem('userInfo')
+        );
 
         // Update accessToken in the userInfo object
         localStorageUserInfo.accessToken = response.data.accessToken;

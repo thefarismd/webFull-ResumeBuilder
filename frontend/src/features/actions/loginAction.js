@@ -11,8 +11,11 @@ const userLogin = createAsyncThunk(
     };
 
     try {
+      // Use the environment variable for the base API URL
+      const apiBaseUrl = process.env.API_URL || ''; // Fallback to an empty string if not defined
+
       const response = await axios.post(
-        '/api/user/login',
+        `${apiBaseUrl}/api/user/login`,
         { email, password },
         config
       );
