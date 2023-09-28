@@ -94,7 +94,7 @@ function Login() {
                   <Button type='submit'>Login</Button>
                 </Col>
                 <Col className='d-flex align-items-center text-end'>
-                  <Container className='px-0'>
+                  <Container className='px-0 ms-0'>
                     <span className='me-2'>New Customer?</span>
                     <Link to={'/register'}>Register&nbsp;here</Link>
                   </Container>
