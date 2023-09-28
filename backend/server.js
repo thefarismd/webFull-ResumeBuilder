@@ -7,6 +7,7 @@ import { notFound, otherError } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 
 dotenv.config(); //Load environment variables
@@ -14,6 +15,13 @@ dotenv.config(); //Load environment variables
 connectDB(); // Establish MongoDB connection
 
 const app = express(); // Create an Express application
+// app.use(cors()); //Eanble CORS for all routes
+app.use(
+  cors({
+    origin: 'https://your-frontend-domain.com',
+  })
+);
+
 
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookie to object
