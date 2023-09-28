@@ -154,7 +154,7 @@ function Register() {
                   <Button type='submit'>Register</Button>
                 </Col>
                 <Col className='d-flex align-items-center text-end'>
-                  <Container className='px-0'>
+                  <Container className='px-0 ms-0'>
                     <span className='me-2'>Have an account?</span>
                     <Link to={'/login'}>Login here</Link>
                   </Container>
